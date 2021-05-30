@@ -1,0 +1,75 @@
+
+
+
+
+
+
+CREATE TABLE public.dept (
+    deptid integer NOT NULL,
+    deptname character varying(100),
+    deptaddress character varying(100)
+);
+
+
+
+
+CREATE TABLE public.emps (
+    empid integer NOT NULL,
+    empname character varying(100),
+    empaddress character varying(50),
+    deptid integer
+);
+
+
+
+
+CREATE TABLE public.staff (
+    staffid integer NOT NULL,
+    staffname character varying(100),
+    staffaddress character varying(50),
+    deptid integer,
+    empid integer
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+ALTER TABLE ONLY public.dept
+    ADD CONSTRAINT dept_pkey PRIMARY KEY (deptid);
+
+
+
+ALTER TABLE ONLY public.emps
+    ADD CONSTRAINT emps_pkey PRIMARY KEY (empid);
+
+
+
+ALTER TABLE ONLY public.staff
+    ADD CONSTRAINT staff_pkey PRIMARY KEY (staffid);
+
+
+
+ALTER TABLE ONLY public.staff
+    ADD CONSTRAINT fk_dept FOREIGN KEY (deptid) REFERENCES public.dept(deptid);
+
+
+
+ALTER TABLE ONLY public.staff
+    ADD CONSTRAINT fk_emps FOREIGN KEY (empid) REFERENCES public.emps(empid);
+
+
+
+ALTER TABLE ONLY public.emps
+    ADD CONSTRAINT fk_emps_dept FOREIGN KEY (deptid) REFERENCES public.dept(deptid);
+
+
+
